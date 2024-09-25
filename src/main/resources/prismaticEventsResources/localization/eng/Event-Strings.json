@@ -12,6 +12,122 @@
       "] #rLose #rthis #rrelic. #gObtain ",
       "] #rLose #rthis #rrelic. #gObtain #ga #grandom #gstarter #grelic",
       "[Walk Away]",
+      "[Leave]",
+      "[Locked: Requires starting relic.]"
+    ]
+  },
+  "prismaticEvents:DevilishTraderEvent": {
+    "NAME": "Devilish Trader",
+    "DESCRIPTIONS": [
+
+    ],
+    "OPTIONS": [
+      
+    ]
+  },
+  "prismaticEvents:PrismaRedEvent": {
+    "NAME": "Sparring Partner",
+    "DESCRIPTIONS": [
+      "As you wind through The Spire a young adventurer calls out to you.",
+      "He is excited to meet another adventurer on a quest like his. He asks if you would take the time to spar with him in order to train for the dangers up ahead.",
+      "The tiny adventurer gives you a suprising run for your money and you two have a productive sparring session.",
+      "You pay no mind to the child. This is not the time for play."
+    ],
+    "OPTIONS": [
+      "[Approach]",
+      "[Spar] #rLose #r",
+      " #rHP. #gAdd #g1 #gRed #gcard #gto #gyour #gdeck.",
+      "[Leave]"
+    ]
+  },
+  "prismaticEvents:PrismaGreenEvent": {
+    "NAME": "Card Shark",
+    "DESCRIPTIONS": [
+      "A hooded man has set-up a table with playing cards.",
+      "\"Tell me, you wouldn't happen to be a gambler now? I'm always interested in a game of chance. I don't have much to offer to you but wisdom, but hopefully that is enough?\"",
+      "The hooded figure flips over the top card of his deck. Scribbled on it are symbols beyond your recognition. He chants nonsense and flips another card before exclaiming...",
+      " NL NL \"Congratulations to you traveler\" NL NL ...and sliding a bag over to you with your winnings.",
+      " NL NL \"Well, you win some, you lose some.\" NL NL ...and taking the money out of your hand. As you move to protest you see that the man has dissapeared, leaving behind only the table he set the game up on.",
+      "Your unease tells you to ignore the hustler and to keep walking."
+    ],
+    "OPTIONS": [
+      "[Play] #r50%: #rLose #r",
+      " #rgold. #g50%: #gAdd #g1 #gGreen #gcard #gto #gyour #gdeck.",
+      "[Leave]",
+      "[Locked: Requires ",
+      " gold to play.]",
+      "[Approach]",
+      "[Open]"
+    ]
+  },
+  "prismaticEvents:PrismaBlueEvent": {
+    "NAME": "Abandoned Terminal",
+    "DESCRIPTIONS": [
+      "You see a strange terminal",
+      "You have a feeling that there can be some useful information here, if only you knew how to get to it...",
+      "Your typing returns no results",
+      "You decide not to push your luck.",
+      "You've been ambushed!",
+      "You found the info!",
+      "During the fight it looks like whatever you did got the information to appear???",
+      "As you walk away the terminal starts to faintly buzz a happy tune."
+    ],
+    "OPTIONS": [
+      "[Approach]",
+      "[Hack] #g",
+      "[Leave]",
+      "[Fight]",
+      "[Learn] #gAdd #g1 #gBlue #gcard #gto #gyour #gdeck.",
+      "%: #gFind #ginformation. #r",
+      "%: #rGet #rambushed."
+    ]
+  },
+  "prismaticEvents:PrismaHermitEvent": {
+    "NAME": "Cursed Weapon",
+    "DESCRIPTIONS": [
+      "You see a strange revolver. It calls to you.",
+      "You may have made a mistake, but it does look cool.",
+      "I aint about that life."
+    ],
+    "OPTIONS": [
+      "[Pick Up] #gAdd #g1 #gYellow #gcard #gto #gyour #gdeck. #rBecome #rCursed #r- #r",
+      "[Walk Away]",
+      "[Leave]"
+    ]
+  },
+  "prismaticEvents:PowerInsideEvent": {
+    "NAME": "Power Inside",
+    "DESCRIPTIONS": [
+      "As you journey through the spire, you spot a stained glass artwork of a long since forgotten hero. As you trace your fingers along the edges of the glass you hear it whisper to you \"A power sleeps within you. If you give it form, it will give you strength.\"",
+      "You feel a power surge from within you. It feels foreign, yet fimiliar. It is not you, but it is like you. As you ready your way to leave and test this new found power the glass calls you again. \"Everything for a price. What will you give up in exchange?\"",
+      "Unsure if this trade was one that benefited you, or hurt you, you continue onward. As you leave, you swear you can see the figure depicted in the glass smile faintly."
+    ],
+    "OPTIONS": [
+      "[I am Strong] #gObtain ",
+      "[I am Cunning] #gObtain ",
+      "[I am Broken] #gObtain ",
+      "[I am Wise] #gObtain ",
+      "[I am Alone] #gObtain ",
+      "[I am Unique] #gObtain ",
+      "[My Body] #rLose #r",
+      "[My Soul] #rLose #r",
+      "[My Wordly Connections] #rLose ",
+      "[Locked: Requires starting relic.]",
+      "[Leave]",
+      " #rHP.",
+      " #rMax #rHP."
+    ]
+  },
+  "prismaticEvents:PrismaPurpleEvent": {
+    "NAME": "Devout Practicioner",
+    "DESCRIPTIONS": [
+      "As you move forward you see a man practicing his faith. He offers you to sit down and pray with him.",
+      "You feel enlightened.",
+      "You move along without his prayers."
+    ],
+    "OPTIONS": [
+      "[Pray] #gAdd #g1 #gPurple #gcard #gto #gyour #gdeck. #rLose #r",
+      " #rEnergy #rat #rthe #rstart #rof #rthe #rnext #rcombat.",
       "[Leave]"
     ]
   }

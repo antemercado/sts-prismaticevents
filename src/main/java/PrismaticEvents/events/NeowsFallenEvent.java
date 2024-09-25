@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Circlet;
 import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
 
 import PrismaticEvents.PrismaticEventsMod;
@@ -26,9 +27,9 @@ public class NeowsFallenEvent extends AbstractImageEvent{
     public static final String IMG = makeEventPath(NeowsFallenEvent.class.getSimpleName() + ".png");
 
     private int screenNum = 0;
-    private AbstractRelic startingRelic;
-    private AbstractRelic gift1;
-    private AbstractRelic gift2;
+    private AbstractRelic startingRelic = null;
+    private AbstractRelic gift1 = new Circlet();
+    private AbstractRelic gift2 = new Circlet();
     
     
     public NeowsFallenEvent() {
@@ -40,7 +41,9 @@ public class NeowsFallenEvent extends AbstractImageEvent{
                 playerStarterRelics.add(r);
             }
         }
-        this.startingRelic = playerStarterRelics.get(0);
+        if (playerStarterRelics.size() > 0){
+            this.startingRelic = playerStarterRelics.get(0);
+        }
         ArrayList<AbstractRelic> relics = new ArrayList<>();
 
         for (AbstractRelic r : RelicLibrary.starterList){
@@ -50,13 +53,19 @@ public class NeowsFallenEvent extends AbstractImageEvent{
                 }
             }
         }
+        if (relics.size() > 0){
+            this.gift1 = relics.get(AbstractDungeon.relicRng.random(relics.size()));
+            relics.remove(this.gift1);
+            this.gift2 = relics.get(AbstractDungeon.relicRng.random(relics.size()));
+        }
 
-        this.gift1 = relics.get(AbstractDungeon.relicRng.random(relics.size() - 1));
-        relics.remove(this.gift1);
-        this.gift2 = relics.get(AbstractDungeon.relicRng.random(relics.size() - 1));
-
-        imageEventText.setDialogOption(OPTIONS[0] + startingRelic.name + OPTIONS[1] + this.gift1.name, this.gift1.makeCopy()); // Lose starting relic, gain starting relic
-        imageEventText.setDialogOption(OPTIONS[0] + startingRelic.name + OPTIONS[2]); // Lose starting relic, gain random starting relic
+        if (this.startingRelic == null){
+            imageEventText.setDialogOption(OPTIONS[5], true);
+            imageEventText.setDialogOption(OPTIONS[5], true);
+        } else {
+            imageEventText.setDialogOption(OPTIONS[0] + startingRelic.name + OPTIONS[1] + this.gift1.name, this.gift1.makeCopy()); // Lose starting relic, gain starting relic
+            imageEventText.setDialogOption(OPTIONS[0] + startingRelic.name + OPTIONS[2]); // Lose starting relic, gain random starting relic
+        }
         imageEventText.setDialogOption(OPTIONS[3]); // Leave
     }
 

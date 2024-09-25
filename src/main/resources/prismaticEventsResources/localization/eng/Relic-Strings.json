@@ -1,0 +1,11 @@
+{
+  "prismaticEvents:DevoutSoulRelic": {
+    "NAME": "Devout Soul",
+    "FLAVOR": "Proof of one's commitment to cleansing one's soul of it's impurities.",
+    "DESCRIPTIONS": [
+      "Start your next combat with ",
+      " less [E].",
+      "This relic has been used up."
+    ]
+  }
+}
