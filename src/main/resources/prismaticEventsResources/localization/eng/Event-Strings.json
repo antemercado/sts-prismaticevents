@@ -2,18 +2,19 @@
   "prismaticEvents:NeowsFallenEvent": {
     "NAME": "Neows Fallen",
     "DESCRIPTIONS": [
-      "As you start your journey through ~The~ ~Spire~ you see the gear of fallen adventurers arranged into a makeshift memorial.",
-      "You grab one of the loose peices of equipment and continue on your way. Somewhere in your journey you seem to have lost some of your starting gear.",
-      "You rummage through the memorial and grab a piece of equipment. Somewhere in your journey you seem to have lost some of your starting gear.",
-      "You decide that it is best not to disturb the dead. You hope that you can avoid a similar fate to those those who came before you."
+      "As you start your journey through ~The~ ~Spire~ you see the gear of a fallen adventurer arranged into a makeshift memorial.",
+      "Looking over the gear you notice some equipment that may benefit you in your journey.",
+      "You draw from the deck of cards sitting in a pile and continue on your way. You can feel the influence of the adventurer that came before you surge in you.",
+      "You rummage through the memorial and grab a piece of equipment the adventured aquired on their travels. You hope the relic can provide you aide in the coming adventures.",
+      "You decide that while it is best not to disturb the dead, they have no need for coin. You hope that this boon can help you avoid a similar fate to those those who came before you."
     ],
     "OPTIONS": [
-      "[Offer: ",
-      "] #rLose #rthis #rrelic. #gObtain ",
-      "] #rLose #rthis #rrelic. #gObtain #ga #grandom #gstarter #grelic",
-      "[Walk Away]",
+      "[Approach]",
+      "[Draw] #gReceive ",
+      "[Rummage] #gReceive ",
+      "[Pickpocket] #gGain #g",
       "[Leave]",
-      "[Locked: Requires starting relic.]"
+      " #ggold."
     ]
   },
   "prismaticEvents:DevilishTraderEvent": {

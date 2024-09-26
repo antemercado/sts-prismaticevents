@@ -2,6 +2,7 @@ package PrismaticEvents;
 
 import basemod.BaseMod;
 import basemod.eventUtil.AddEventParams;
+import basemod.eventUtil.EventUtils.EventType;
 import basemod.eventUtil.util.Condition;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
@@ -36,6 +37,7 @@ import PrismaticEvents.events.PrismaHermitEvent;
 import PrismaticEvents.events.PrismaPurpleEvent;
 import PrismaticEvents.events.PrismaRedEvent;
 import PrismaticEvents.relics.DevoutSoulRelic;
+import PrismaticEvents.util.NeowsFallenCondition;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -89,6 +91,15 @@ public class PrismaticEventsMod implements
 
     public static boolean foundmod_hermit = false;
 
+    // Neows Fallen IDs
+    public static final String NEOWS_FALLEN_ACT_KEY = makeID("NF_ACT");
+    public static final String NEOWS_FALLEN_CHAR_KEY = makeID("NF_CHAR");
+    public static final String NEOWS_FALLEN_RELIC_KEY = makeID("NF_RELIC");
+    public static final String NEOWS_FALLEN_CARD_KEY = makeID("NF_CARD");
+    public static final String NEOWS_FALLEN_CARD_UPGRADE_KEY = makeID("NF_CARD_UPS");
+    public static final String NEOWS_FALLEN_GOLD_KEY = makeID("NF_GOLD");
+    public static final String NEOWS_FALLEN_RUN_FAILED = makeID("NF_RUN_FAILED");
+
     public static void initialize() {
         PrismaticEventsMod thismod = new PrismaticEventsMod();
         foundmod_hermit = Loader.isModLoaded("downfall");
@@ -96,8 +107,8 @@ public class PrismaticEventsMod implements
 
     @Override
     public void receivePostInitialize() {
-        BaseMod.addEvent(PowerInsideEvent.ID, PowerInsideEvent.class);
-        // BaseMod.addEvent(NeowsFallenEvent.ID, NeowsFallenEvent.class, Exordium.ID);
+        BaseMod.addEvent(PowerInsideEvent.ID, PowerInsideEvent.class, Exordium.ID);
+        BaseMod.addEvent(new AddEventParams.Builder(NeowsFallenEvent.ID, NeowsFallenEvent.class).eventType(EventType.ONE_TIME).bonusCondition(new NeowsFallenCondition()).create());
         BaseMod.addEvent(PrismaRedEvent.ID, PrismaRedEvent.class);
         BaseMod.addEvent(PrismaGreenEvent.ID, PrismaGreenEvent.class);
         BaseMod.addEvent(PrismaBlueEvent.ID, PrismaBlueEvent.class);
