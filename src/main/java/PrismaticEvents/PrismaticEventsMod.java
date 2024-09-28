@@ -18,14 +18,18 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
+import com.megacrit.cardcrawl.cards.red.IronWave;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.characters.AbstractPlayer.PlayerClass;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon.CurrentScreen;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
@@ -41,6 +45,7 @@ import PrismaticEvents.util.NeowsFallenCondition;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -50,7 +55,8 @@ import org.apache.logging.log4j.Logger;
 public class PrismaticEventsMod implements
         PostInitializeSubscriber,
         EditRelicsSubscriber,
-        EditStringsSubscriber{
+        EditStringsSubscriber,
+        PostDeathSubscriber{
     public static final Logger logger = LogManager.getLogger(PrismaticEventsMod.class.getName());
 
     @SpireEnum
@@ -131,5 +137,44 @@ public class PrismaticEventsMod implements
     public void receiveEditRelics() {
         logger.info("Adding relics");
         BaseMod.addRelic(new DevoutSoulRelic(), RelicType.SHARED);
+    }
+    
+    @Override
+    public void receivePostDeath() {
+        if (!Settings.isStandardRun()){
+            return;
+        }
+        ArrayList<AbstractCard> neowFallenCardList = new ArrayList<AbstractCard>();
+        ArrayList<AbstractRelic> neowFallenRelicList = new ArrayList<AbstractRelic>();
+        
+        AbstractCard neowFallenCard = AbstractDungeon.player.masterDeck.getRandomCard(true);
+        for (AbstractRelic r : AbstractDungeon.player.relics){
+            if (r.tier != RelicTier.DEPRECATED && r.tier != RelicTier.SPECIAL)
+                neowFallenRelicList.add(r);
+        }
+        Collections.shuffle(neowFallenRelicList);
+        if (neowFallenRelicList.size() > 0){
+            AbstractRelic neowFallenRelic = neowFallenRelicList.get(0);
+            CardCrawlGame.playerPref.putString(NEOWS_FALLEN_RELIC_KEY, neowFallenRelic.relicId);
+        } else {
+            CardCrawlGame.playerPref.putString(NEOWS_FALLEN_RELIC_KEY, "Circlet");
+        }
+
+        for (AbstractCard c : AbstractDungeon.player.masterDeck.group){
+            if (c.type != CardType.CURSE && c.type != CardType.STATUS)
+                neowFallenCardList.add(c);
+        }
+        Collections.shuffle(neowFallenCardList);
+        if (neowFallenCardList.size() > 0){
+            neowFallenCard = neowFallenCardList.get(0);
+        } else {
+            neowFallenCard = new IronWave();
+        }
+        CardCrawlGame.playerPref.putInteger(NEOWS_FALLEN_ACT_KEY, AbstractDungeon.actNum);
+        CardCrawlGame.playerPref.putString(NEOWS_FALLEN_CHAR_KEY, AbstractDungeon.player.chosenClass.name());
+        CardCrawlGame.playerPref.putString(NEOWS_FALLEN_CARD_KEY, neowFallenCard.cardID);
+        CardCrawlGame.playerPref.putInteger(NEOWS_FALLEN_CARD_UPGRADE_KEY, neowFallenCard.timesUpgraded);
+        CardCrawlGame.playerPref.putInteger(NEOWS_FALLEN_GOLD_KEY, AbstractDungeon.player.gold);
+        CardCrawlGame.playerPref.putBoolean(NEOWS_FALLEN_RUN_FAILED, true);
     }
 }
