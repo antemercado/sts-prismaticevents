@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import PrismaticEvents.PrismaticEventsMod;
 import PrismaticEvents.relics.DevoutSoulRelic;
+import PrismaticEvents.util.PrismaticRewardHelper;
 
 public class PrismaPurpleEvent extends AbstractImageEvent{
 
@@ -70,7 +71,7 @@ public class PrismaPurpleEvent extends AbstractImageEvent{
         rewardRelic.setCounter(relicCounter);
         AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), rewardRelic);
         (AbstractDungeon.getCurrRoom()).rewards.clear();
-        AbstractDungeon.getCurrRoom().addCardReward(PrismaticEventsMod.PrismaticReward(CardCrawlGame.characterManager.getCharacter(PlayerClass.WATCHER)));
+        AbstractDungeon.getCurrRoom().addCardReward(PrismaticRewardHelper.PrismaticReward(CardCrawlGame.characterManager.getCharacter(PlayerClass.WATCHER)));
         (AbstractDungeon.getCurrRoom()).phase = RoomPhase.COMPLETE;
         AbstractDungeon.combatRewardScreen.open();
     }

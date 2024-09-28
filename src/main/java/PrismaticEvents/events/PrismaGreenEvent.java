@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 
 import PrismaticEvents.PrismaticEventsMod;
+import PrismaticEvents.util.PrismaticRewardHelper;
 
 public class PrismaGreenEvent extends AbstractImageEvent{
 
@@ -98,7 +99,7 @@ public class PrismaGreenEvent extends AbstractImageEvent{
 
     private void reward(){
         (AbstractDungeon.getCurrRoom()).rewards.clear();
-        AbstractDungeon.getCurrRoom().addCardReward(PrismaticEventsMod.PrismaticReward(CardCrawlGame.characterManager.getCharacter(PlayerClass.THE_SILENT)));
+        AbstractDungeon.getCurrRoom().addCardReward(PrismaticRewardHelper.PrismaticReward(CardCrawlGame.characterManager.getCharacter(PlayerClass.THE_SILENT)));
         (AbstractDungeon.getCurrRoom()).phase = RoomPhase.COMPLETE;
         AbstractDungeon.combatRewardScreen.open();
         this.screen = CurScreen.LEAVE;

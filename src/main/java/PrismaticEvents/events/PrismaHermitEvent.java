@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import PrismaticEvents.PrismaticEventsMod;
+import PrismaticEvents.util.PrismaticRewardHelper;
 import downfall.monsters.gauntletbosses.Hermit;
 import hermit.characters.hermit;
 import hermit.cards.MementoCard;
@@ -100,7 +101,7 @@ public class PrismaHermitEvent extends AbstractImageEvent{
 
     private void reward(){
         (AbstractDungeon.getCurrRoom()).rewards.clear();
-        AbstractDungeon.getCurrRoom().addCardReward(PrismaticEventsMod.PrismaticReward(CardCrawlGame.characterManager.getCharacter(hermit.Enums.HERMIT)));
+        AbstractDungeon.getCurrRoom().addCardReward(PrismaticRewardHelper.PrismaticReward(CardCrawlGame.characterManager.getCharacter(hermit.Enums.HERMIT)));
         (AbstractDungeon.getCurrRoom()).phase = RoomPhase.COMPLETE;
         AbstractDungeon.combatRewardScreen.open();
     }
